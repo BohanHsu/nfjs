@@ -1,0 +1,49 @@
+Javascript: single thread
+denotational design with type class morphisms???
+
+what's wrong with promises???
+  can't cancel it. xhr could be canceled...
+  when it's done, it is done. need to keep creating new promises. only has one return value
+  are eager (cannot make it wait)
+  cannot retry the promise
+
+FRP
+Data Flow Programming
+
+Observer pattern
+Iterator pattern
+  pull: if you have next, then give me the next
+
+Observalbe:
+  Observer + Iterator == RX
+
+Sequence over time
+
+Creating Observable:
+
+Pipe going down
+Operators:
+scan: infinate -> snapshot
+  take a snapshot of what you have now, and then become finite stream
+
+flatMap:
+  element -> observable
+  subscribe to all of them, create a number of observable and then flat them
+
+Error handling
+subscribe callback error:
+
+.catch((e) => Rx.Observable.of({})
+).subscribe
+
+.retry
+
+Hot & cold
+hot -> live
+  temporal
+  missing events before subscribe
+
+No way in the api to tell hot or cold
+
+Reactive-Extensions/RxJS deplicated
+ReactiveX/rxjs the latest version

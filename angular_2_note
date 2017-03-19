@@ -1,0 +1,201 @@
+platform -- angular 2
+
+how to play with:
+plunker
+angular2-seed (github)
+angular-cli (github)
+
+visual code studio (MS)
+
+webpack
+  loader: processing certain files
+  resolve:
+  define look up path
+
+
+typescript -> js
+
+angular style guide
+
+app.ts
+
+app.module.ts (a package in java)
+@NgModule annotation
+declaration: list of compontent belong to this module
+bootstrap: (thing as main method), put AppCompontent here
+BrowserModule: (browser client)
+
+main.browser.ts
+ which module is the root module.
+
+a new slice, a new folder
+containers.component.ts
+containers.component.html
+
+Chrome: Angury
+
+index.ts: work as index.js file, recommendated !!!
+
+parent can set data on child componentent. child cannot reach out parent. Only way communicate is event.
+  data down event tree
+  event pop up event tree
+
+<tr *ngFor="let c of array">
+  {{c.Status}}
+</tr>
+
+selector: 'tr'
+
+<tr class="container-row">
+selector: 'tr.container-row' (jquery selector work!)
+
+@Input() container; // parent will set this for you
+
+<tr class="container-row" [container]=c> // [container]=c is the setter
+<tr class="container-row" setContainer=(c)>
+
+<tr class="container-row" [container]=c (onEvent)="bla">
+
+================================================================================
+pipes: (filter)
+
+<td> {{ container.Created | date:'yyyy-MM-dd' }} </td>
+
+<td> {{ container.Image | uppercase | lowercase }} </td>
+
+write own filter
+
+@Pipe({
+  name: 'moneyRender'
+})
+
+class PipeNamePipe implements PipeTransform
+
+transform(value: any, args: any[]): any {
+}
+
+
+================================================================================
+Ajax:
+
+core/api.ts
+
+app.module.ts also need http module
+import { HttpModule } from '@angular/http' // import entire HttpModule
+
+imports: [
+  BrowserModule,
+  HttpModule
+] // general rule, imports are modules (pre-defined or self-defined)
+
+Observable
+
+
+HTTP
+  ^
+  |
+API.SERVICE
+  ^
+  |
+CONTAINER.SERVICE
+  ^
+  |
+ALLCONTAINERS.SERVICE
+
+providers: [
+  ApiService,
+  ContainerService
+]
+
+ngOnInit() // called right after constructor call, do heavy load work
+
+this.ContainerService.getContainsers()
+  .subscribe(n => {
+  this.containers = n
+})
+ngOninit() {}
+
+
+cross site proxy: server side configuration (real server)
+jhipster angular2 + spring
+
+Navigation:
+
+app.routes.ts
+export const routes: Routes = [
+  {
+    path: 'dashborad',
+    component: DashBoardComponent
+  },
+  {
+    path: 'container',
+    component: ContainersComponent
+  },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  }
+]
+
+<router-outlet></router-outlet>
+
+imports: [
+  RouterModule.forRoot(routes)
+]
+
+<a [routerLink]="['/dashboard']" />
+
+<li routeLinkActive="active" />
+
+
+source code
+https://gitlab.com/looselytyped/demo-docker-ui
+
+
+<button (click)="callParent()" />
+
+@Output jess: EventEmitter;
+callParent($event) {
+  jess.emit($event)
+}
+
+<tr class="container-row" [container]=c (jess)="handleJessEvent()">
+
+================================================================================
+
+url:
+/message/36
+?a=b
+
+matrix params:
+/path/;a=1;a=2/childPath;b=1;b=2
+
+secondary segments Auxiliary
+/path(aside:detail//siderbar:true)/childPath(popup:compose)
+
+order matters!
+matching by path
+put redirect at last
+
+children: [
+  {
+    path: ":id"
+  }
+]
+
+guard:
+return true of false, can the use navigate to the url?
+canActivate: can i goto 
+canActivateChild: can children activated?
+canDeactivate: can i go out from an URL?
+canLoad: for lazy loaded modules
+
+resolve
+dynamic data potron for the compontent
+
+outlet
+<router-outlet name="xxx"></router-outlet>
+
+Victor Savkin
+Angular Routing Doc

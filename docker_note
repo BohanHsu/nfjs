@@ -1,0 +1,80 @@
+image (source code) 
+container (running of source code)
+registry (github of images)
+
+namespaces:
+  Users 
+  Filesytem 
+  Process trees 
+  Network
+  IPC
+
+cgroup:
+what you can use:
+  Limiting / Metering / ACL
+
+container is like a process (namespaces and cgroups)
+
+VM containers????
+
+App A
+ |
+ V
+Libs
+ |
+ v
+Docker engine
+
+NO OS layer!!!!
+
+================================================================================
+docker pull jenkins:2.32.3 // download the image
+
+run = create + start
+
+docker run ubuntu
+docker run -i -t ubuntu /bin/bash
+
+dockerfile:
+  text file, use docker build image from dockerfile
+
+Docker bridge!!!
+
+-v /host/path:/tmp
+redirect /tmp on the container to /host/path on host system
+
+Docker compose
+Docker swarm
+
+
+================================================================================
+
+Union file system:
+  delete files also increase the number of layers
+  write space may cause cache miss
+
+Order change,
+  static on top, change things at bottom, layer & cache
+
+FROM:
+  First line on docker file
+
+RUN:
+  
+ADD/COPY
+  Avoid ADD
+
+  dockerignore file:
+  not load in the daemon
+
+USER:
+  Do not switch USER ofter
+  Avoid using root
+  Each user change add one layer
+
+LABELS:
+  
+ENTRYPOINT/CMD
+  Avoid the shell form
+  Array form the process is root process
+  Shell form the process is child of root process
